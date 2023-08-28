@@ -52,6 +52,8 @@ image-populate:
 		-D opensearch_hash_compressed=$(shell sha256sum public/${OPENSEARCH_FILENAME}.gz | cut -d ' ' -f 1) \
 		--strict src/index.html.jinja \
 		--outfile public/index.html
+	rm -f public/${POSTGRESQL_FILENAME}
+	rm -f public/${OPENSEARCH_FILENAME}
 
 image-finalize:
 	buildah copy $(container) 'public' '/usr/share/nginx/html'
