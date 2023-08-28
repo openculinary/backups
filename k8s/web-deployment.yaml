@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backups-deployment
+  labels:
+    app: backups
+spec:
+  selector:
+    matchLabels:
+      app: backups
+      role: web
+  template:
+    metadata:
+      labels:
+        app: backups
+        role: web
+    spec:
+      containers:
+      - image: registry.openculinary.org/reciperadar/backups
+        imagePullPolicy: IfNotPresent
+        name: backups
+        ports:
+        - containerPort: 80
