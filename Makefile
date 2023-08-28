@@ -14,7 +14,7 @@ build: image
 
 deploy:
 	kubectl apply -f k8s
-	kubectl set image deployments -l app=${SERVICE} ${SERVICE}=${IMAGE_NAME}:${IMAGE_TAG}
+	kubectl set image deployments -l app=${SERVICE} ${SERVICE}=${IMAGE_NAME}:${IMAGE_TAG}-${YYYYMMDD}
 
 image: image-create collect-postgresql collect-opensearch image-populate image-finalize
 
@@ -56,7 +56,7 @@ image-populate:
 image-finalize:
 	buildah copy $(container) 'public' '/usr/share/nginx/html'
 	buildah config --cmd '/usr/sbin/nginx -g "daemon off;"' --port 80 $(container)
-	buildah commit --quiet --rm --squash $(container) ${IMAGE_NAME}:${IMAGE_TAG}
+	buildah commit --quiet --rm --squash $(container) ${IMAGE_NAME}:${IMAGE_TAG}-${YYYYMMDD}
 
 # Virtualenv Makefile pattern derived from https://github.com/bottlepy/bottle/
 venv: venv/.installed requirements-dev.txt
