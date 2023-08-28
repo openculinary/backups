@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="RecipeRadar - public data backups" />
+    <meta name="theme-color" content="#07f" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RecipeRadar - public data backups</title>
+  </head>
+  <body>
+    <h1>RecipeRadar - public data backups</h1>
+    <p>This page hosts public backups of the data from the <a href="https://www.reciperadar.com">RecipeRadar</a> production instance, with the exclusion of event log data.</p>
+    <p>You may use this data under the terms of the <a href="https://opendatacommons.org/licenses/odbl/">ODC Open Database License v1.0<a> (also <a href="odbl-10.txt">included in full on this website</a>).
+    <p>The latest backup was taken on <code>{{ yyyymmdd }}</code>, and the files available for download are:</p>
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>Filename</th>
+        <th>Size (compressed / uncompressed)</th>
+        <th>SHA-256 Signature (compressed)</th>
+      </tr>
+      <tr>
+        <td>PostgreSQL database backup</td>
+        <td><a href="{{ postgresql_filename }}">{{ postgresql_filename }}</a></td>
+        <td>{{ postgresql_size_compressed }} / {{ postgresql_size_uncompressed }}</td>
+        <td>{{ postgresql_hash_compressed }}</td>
+      </tr>
+      <tr>
+        <td>OpenSearch search engine snapshot</td>
+        <td><a href="{{ opensearch_filename }}">{{ opensearch_filename }}</a></td>
+        <td>{{ opensearch_size_compressed }} / {{ opensearch_size_uncompressed }}</td>
+        <td>{{ opensearch_hash_compressed }}</td>
+      </tr>
+    </table>
+  </body>
+</html>
