@@ -39,7 +39,7 @@ collect-opensearch:
 	gzip --keep public/${OPENSEARCH_FILENAME}
 
 image-populate:
-	$(eval emails=$(shell grep --count '[:alnum:][@][:alnum:]*[.][:alnum:]' public/${POSTGRESQL_FILENAME}))
+	$(eval emails=$(shell grep --count '[[:alnum:]][@][[:alnum:]]*[.][[:alnum:]]' public/${POSTGRESQL_FILENAME}))
 	@if [ "${emails}" -ne "0" ]; then echo "error: the database backup may unexpectedly contain email addresses; please inspect the contents before proceeding"; exit 1; fi;
 	cp src/odbl-10.txt public/odbl-10.txt
 	venv/bin/jinja2 \
