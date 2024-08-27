@@ -33,7 +33,7 @@ collect-postgresql:
 collect-opensearch:
 	$(eval OPENSEARCH_FILENAME=opensearch-${YYYYMMDD}.tar)
 	curl -XDELETE 'http://opensearch:9200/_snapshot/reciperadar/singleton'
-	curl -XPOST 'http://opensearch:9200/_snapshot/reciperadar/singleton?wait_for_completion=true'
+	curl -XPOST -H 'Content-Type: application/json' 'http://opensearch:9200/_snapshot/reciperadar/singleton?wait_for_completion=true' --data '{"indices": "*,-.*"}'
 	tar --create --file public/${OPENSEARCH_FILENAME} --directory /mnt/backup opensearch
 	curl -XDELETE 'http://opensearch:9200/_snapshot/reciperadar/singleton'
 	gzip --keep public/${OPENSEARCH_FILENAME}
