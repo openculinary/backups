@@ -8,6 +8,7 @@ IMAGE_NAME=${REGISTRY}/${PROJECT}/${SERVICE}
 IMAGE_COMMIT := $(shell git rev-parse --short HEAD)
 IMAGE_TAG := $(strip $(if $(shell git status --porcelain --untracked-files=no), latest, ${IMAGE_COMMIT}))
 
+# TODO: more granular timestamping?
 YYYYMMDD := $(shell date "+%Y%m%d")
 
 build: image
