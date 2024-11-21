@@ -73,7 +73,7 @@ venv/.installed:
 	touch venv/.installed
 
 requirements-dev.txt: requirements-dev.in
-	venv/bin/pip-compile --allow-unsafe --generate-hashes --no-config --no-header --quiet --strip-extras requirements-dev.in
+	venv/bin/pip-compile --allow-unsafe --generate-hashes --no-config --no-header --output-file requirements-dev.txt --quiet --strip-extras requirements-dev.in
 
 lint:
 	true
