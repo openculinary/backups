@@ -27,7 +27,7 @@ image-create:
 
 collect-postgresql:
 	$(eval POSTGRESQL_FILENAME=postgresql-${YYYYMMDD}.sql)
-	pg_dump --host postgresql --username backend --dbname backend --exclude-table-data 'domains' --exclude-table-data 'events.*' > /mnt/backup/postgresql/${YYYYMMDD}.sql
+	pg_dump --host postgresql --username backend --dbname backend --exclude-table-data 'crawl_urls' --exclude-table-data 'domains' --exclude-table-data 'recipe_urls' --exclude-table-data 'events.*' > /mnt/backup/postgresql/${YYYYMMDD}.sql
 	cp /mnt/backup/postgresql/${YYYYMMDD}.sql public/${POSTGRESQL_FILENAME}
 	gzip --keep public/${POSTGRESQL_FILENAME}
 
